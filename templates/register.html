@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MuzIk</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+  </head>
+  <body>
+    <div class="row d-none d-lg-flex">
+      <div class="col-lg-3">
+        <div class="sidebar-menu">
+          <div class="container">
+            <div class="row mx-3 sidebar-title">
+              <div class="col-lg-1">
+                <h2>MuzIk</h2>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row header-home p-3 d-flex justify-content-end align-items-center"
+      style="position: fixed; background-color: #070707"
+    >
+      <div class="col-8 col-lg-8 d-flex flex-columns align-items-center">
+        
+      </div>
+      <div
+        class="col-4 col-lg-2 d-flex flex-columns flex-nowrap align-items-center"
+      >
+        <h6>Sign Up</h6>
+        <h6
+          class="mx-4 login-button"
+          style="
+            padding: 10px 20px;
+            background-color: #fafafa;
+            color: black;
+            border-radius: 50px;
+          "
+        >
+          Log In
+        </h6>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-end homepage">
+      <div class="col-lg-10 mt-3">
+        <div class="container">
+            <form>
+                <div class="form-login-signup">
+                
+                <h2>MuzIk</h2>
+                <div class="mb-3">
+                    <input type="email" placeholder="username" class="form-control" id="username" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <input type="number" placeholder="mobile number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                  <input type="email" placeholder="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-success submit-login-signup">Submit</button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+
+    <!-- End Footer -->
+    <script
+      src="https://kit.fontawesome.com/4c03683015.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
