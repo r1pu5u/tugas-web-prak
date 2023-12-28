@@ -24,10 +24,19 @@ class Music(db.Model):
     title = db.Column(db.String(100), nullable=False)
     artist = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    # You can add more fields as needed
+    file_music = db.Column(db.String(100), nullable=False)
+    file_thumbnail = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
         return f"<Music {self.title} by {self.artist}>"
+    
+class Playlist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_music = db.Column(db.String(100), nullable=False)
+    created_tgl = db.Column(db.String(100), nullable=False)
+    created_by = db.Column(db.String(100), nullable=False)
+    def __repr__(self):
+        return f"<Music {self.id} by {self.created_by}>"
     
 with app.app_context():
     db.create_all()
