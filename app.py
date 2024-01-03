@@ -1,14 +1,21 @@
 from flask import Flask, render_template, request, jsonify
 from music_routes import uplad
-app = Flask(__name__)
 
-from models.db import User, db, Music
+
+from models.db import User, db, Music, Playlist
+from controllers import MusicControlerer
 # app.register_blueprint(uplad, url_prefix='/music')
-
+app = Flask(__name__)
 
 @app.route("/")
 def index():
     return render_template('index.html')
+
+
+
+@app.route("/testing")
+def testing():
+    return render_template('testing.html')
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -56,38 +63,56 @@ def signup():
 
         return jsonify({'message': 'User registered successfully!'}), 201  # Created status code
     
-@app.route('/upload', methods=['POST'])
-def upload_music():
+@app.route("/api/music/", methods=['POST',  'PUT'])
+@app.route('/api/music/<int:music_id>', methods=['GET', 'DELETE'])
+def upload_music(music_id=None):
+    music = MusicControlerer(app.root_path, app)
+    if request.method == "GET" and music_id != None:
+        data = music.get_music_by_id(music_id)
+        return data
+    elif request.method == "DELETE" and music_id != None:
+        data = music.delete_music(music_id)
+        return data
+    
     title = request.form.get('title')
     artist = request.form.get('artist')
     user_id = request.form.get('user_id')
+    lirik = request.form.get('lirik')
+
     file_music = request.files['file_music']
+
     file_thumbnail = request.files['file_thumbnail']
+    if request.method == "POST":
+        music.create_music(title, artist, user_id, lirik, file_music, file_thumbnail)
+    
 
-    # Check if all required fields are present
-    if not all([title, artist, user_id, file_music, file_thumbnail]):
-        return jsonify({'error': 'Missing data'}), 400
+@app.route("/api/playlist/", methods=['POST',  'PUT'])
+@app.route('/api/playlist/<int:playlist_id>', methods=['GET', 'DELETE'])
+def playlist(playlist_id):
+    if request.method == "GET":
+        return Playlist.query.get(playlist_id)
 
-    # Save files to a specific directory (you might want to change this path)
-    music_path = f"uploads/music/{file_music.filename}"
-    thumbnail_path = f"uploads/thumbnails/{file_thumbnail.filename}"
-    file_music.save(music_path)
-    file_thumbnail.save(thumbnail_path)
+    
+    data = request.get_json()
+    id_music = data.get('id_music')
+    created_tgl = data.get('created_tgl')
+    created_by = data.get('created_by')
 
-    # Create a new music object and add it to the database
-    new_music = Music(
-        title=title,
-        artist=artist,
-        user_id=user_id,
-        file_music=music_path,
-        file_thumbnail=thumbnail_path
-    )
 
-    db.session.add(new_music)
-    db.session.commit()
-
-    return jsonify({'message': 'Music uploaded successfully'}), 200
-
+    if request.method == "POST":
+        new_playlist = Playlist(id_music=id_music, created_tgl=created_tgl, created_by=created_by)
+        db.session.add(new_playlist)
+        db.session.commit()
+    elif request.method == "PUT":
+        playlist = Playlist.query.get(playlist_id)
+        playlist.id_music = id_music
+        playlist.created_tgl = created_tgl
+        playlist.created_by = created_by
+        db.session.commit()
+    elif request.method == "DELETE":
+        playlist = Playlist.query.get(playlist_id)
+        db.session.delete(playlist)
+        db.session.commit()
 
 
 
