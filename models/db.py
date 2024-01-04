@@ -13,6 +13,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), unique=True, nullable=False)
+    role = db.Column(db.String(20), nullable=False)
     # You can add more fields as needed
 
     def __repr__(self):

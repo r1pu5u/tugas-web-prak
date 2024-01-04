@@ -1,0 +1,54 @@
+.bg-jumbotron {
+    background-image: linear-gradient(to bottom, #040943, #000000);
+
+    img {
+        border-radius: 20px;
+    }
+}
+
+.bg-jumbotron .title-playlist {
+    font-family: Arial;
+    h1 {
+        font-size: 55px;
+        font-weight: bold;
+    }
+    p {
+        margin-top: 25px;
+    }
+}
+
+.action-play {
+    button {
+        border-radius: 100%;
+        margin-left: 15px;
+    }
+
+    i {
+        font-size: 135%;
+    }
+
+    .addon {
+        color: white;
+    }
+    
+}
+
+
+.saerch {
+    max-width: 200px;
+}
+.saerch:focus {
+    outline: none;
+}
+
+.table-music .content-table-music {
+    th {
+        background-color: #121212;
+        color: white;
+    }
+
+    td {
+        background-color: #121212;
+        color: white;
+    }
+}

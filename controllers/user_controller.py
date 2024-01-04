@@ -34,6 +34,10 @@ def signup():
         password = data.get('password')
         phone_number = data.get('phone_number')
 
+        print(username)
+        print(email)
+        print(password)
+        print(phone_number)
         # Check if user already exists
         existing_user = User.query.filter((User.email == email) | (User.username == username) | (User.phone_number == phone_number)).first()
 
@@ -41,7 +45,7 @@ def signup():
             return jsonify({'message': 'User already exists!'}), 409  # Conflict status code
 
         # Create new user
-        new_user = User(username=username, email=email, password=password, phone_number=phone_number)
+        new_user = User(username=username, email=email, password=password, phone_number=phone_number, role='user')
         
         # Add user to database
         db.session.add(new_user)

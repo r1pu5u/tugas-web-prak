@@ -101,3 +101,14 @@ body {
   background-color: gray;
   color: #fafafa !important;
 }
+
+.dark-modal .modal-content {
+  background-color: #333;
+  color: #fff;
+}
+.dark-modal .modal-header {
+  border-bottom: 1px solid #444;
+}
+.dark-modal .modal-footer {
+  border-top: 1px solid #444;
+}
